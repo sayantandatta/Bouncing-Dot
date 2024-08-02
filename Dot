@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomly Moving Dot</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        #dot {
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="dot"></div>
+    <script>
+        const dot = document.getElementById('dot');
+        const bodyWidth = window.innerWidth;
+        const bodyHeight = window.innerHeight;
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function moveDot() {
+            const startX = getRandomInt(0, bodyWidth - 20);
+            const startY = getRandomInt(0, bodyHeight - 20);
+            const endX = getRandomInt(0, bodyWidth - 20);
+            const endY = getRandomInt(0, bodyHeight - 20);
+            const duration = getRandomInt(2, 5);
+
+            dot.style.transition = `transform ${duration}s linear`;
+            dot.style.transform = `translate(${endX}px, ${endY}px)`;
+
+            setTimeout(moveDot, duration * 1000);
+        }
+
+        moveDot();
+    </script>
+</body>
+</html>
